@@ -1,4 +1,5 @@
 ﻿using Reface.AppStarter.AppModules;
+using Reface.AppStarter.Demo.Logger;
 
 namespace Reface.AppStarter.Demo.Users
 {
@@ -7,6 +8,7 @@ namespace Reface.AppStarter.Demo.Users
     /// </summary>
     [ComponentScanAppModule]
     [AutoConfigAppModule]
+    [LoggerAppModule]
     public class UserAppModule : AppModule
     {
     }
