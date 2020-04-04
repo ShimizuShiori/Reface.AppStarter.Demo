@@ -1,8 +1,7 @@
 ﻿using Reface.AppStarter.Attributes;
+using Reface.AppStarter.Demo.FileStorage;
 using Reface.AppStarter.Demo.Logger;
-using Reface.AppStarter.Demo.Logger.Attributes;
 using Reface.AppStarter.Demo.Users.Configs;
-using System;
 
 namespace Reface.AppStarter.Demo.Users
 {
@@ -11,28 +10,26 @@ namespace Reface.AppStarter.Demo.Users
     {
         private readonly UsersConfig usersConfig;
         private readonly ILogger logger;
+        private readonly IFileStorage<User> userStorage;
 
-        public DefaultUserService(UsersConfig usersConfig, ILogger logger)
+        public DefaultUserService(UsersConfig usersConfig, ILogger logger, IFileStorage<User> userStorage)
         {
             this.usersConfig = usersConfig;
             this.logger = logger;
-
+            this.userStorage = userStorage;
         }
 
-        [Logger]
-        public bool CheckUserNameAndPassword(User user)
+        public void Create(User user)
         {
-            if (user.Name == this.usersConfig.Admin && user.Password == this.usersConfig.Password)
-                return true;
-            return false;
-        }
-
-        [Logger]
-        public string Register(string name, string password)
-        {
-            if (name == this.usersConfig.Admin)
-                throw new ApplicationException(Constant.ERROR_MSG_USER_NAME_EXISTS);
-            return Guid.NewGuid().ToString();
+            if (user.Name == usersConfig.Admin)
+            {
+                this.logger.Error("用户名不能与管理员相同");
+            }
+            this.userStorage.Insert(new User()
+            {
+                Name = user.Name,
+                Password = user.Password
+            });
         }
     }
 }

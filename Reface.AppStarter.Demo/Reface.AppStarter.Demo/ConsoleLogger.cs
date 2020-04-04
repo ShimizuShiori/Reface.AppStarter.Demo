@@ -11,6 +11,7 @@ namespace Reface.AppStarter.Demo
             switch (level)
             {
                 case LoggerLevel.Info:
+                    Console.ForegroundColor = ConsoleColor.Green;
                     break;
                 case LoggerLevel.Warning:
                     Console.ForegroundColor = ConsoleColor.Yellow;

@@ -1,6 +1,5 @@
 ﻿using Reface.AppStarter.AppContainers;
-using Reface.AppStarter.Demo.Users.Commands;
-using Reface.CommandBus;
+using Reface.AppStarter.Demo.Logger;
 using System;
 using System.Collections.Generic;
 
@@ -23,18 +22,19 @@ namespace Reface.AppStarter.Demo
             using (var scope = container.BeginScope("TEST"))
             {
                 IEnumerable<ITask> tasks = scope.CreateComponent<IEnumerable<ITask>>();
+                ILogger logger = scope.CreateComponent<ILogger>();
                 foreach (var task in tasks)
                 {
-                    Console.WriteLine($"开始任务 [{task.TaskName}]");
+                    logger.Info($"开始任务 [{task.TaskName}]");
                     try
                     {
                         task.Do();
-                        Console.WriteLine("任务完成");
+                        logger.Info("任务完成");
                     }
                     catch (Exception ex)
                     {
 
-                        Console.WriteLine($"任务异常 [{ex.Message}]");
+                        logger.Error($"任务异常 [{ex.Message}]");
                     }
                 }
             }

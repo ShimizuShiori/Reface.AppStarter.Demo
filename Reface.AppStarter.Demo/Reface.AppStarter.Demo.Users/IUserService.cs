@@ -2,8 +2,6 @@
 {
     public interface IUserService
     {
-        bool CheckUserNameAndPassword(User user);
-
-        string Register(string name, string password);
+        void Create(User user);
     }
 }
