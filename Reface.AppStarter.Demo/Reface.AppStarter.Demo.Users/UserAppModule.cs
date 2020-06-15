@@ -9,8 +9,6 @@ namespace Reface.AppStarter.Demo.Users
     /// </summary>
     [ComponentScanAppModule]
     [AutoConfigAppModule]
-    [LoggerAppModule]
-    [FileStorageAppModule]
     public class UserAppModule : AppModule
     {
     }

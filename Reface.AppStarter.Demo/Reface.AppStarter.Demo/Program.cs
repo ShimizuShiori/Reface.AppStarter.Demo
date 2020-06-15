@@ -15,29 +15,6 @@ namespace Reface.AppStarter.Demo
             // 启动示例模块
             var app = setup.Start(new DemoAppModule());
 
-            // 创建 Autofac 容器
-            var container = app.GetAppContainer<AutofacContainerComponentContainer>();
-
-            // 开启 Scope
-            using (var scope = container.BeginScope("TEST"))
-            {
-                IEnumerable<ITask> tasks = scope.CreateComponent<IEnumerable<ITask>>();
-                ILogger logger = scope.CreateComponent<ILogger>();
-                foreach (var task in tasks)
-                {
-                    logger.Info($"开始任务 [{task.TaskName}]");
-                    try
-                    {
-                        task.Do();
-                        logger.Info("任务完成");
-                    }
-                    catch (Exception ex)
-                    {
-
-                        logger.Error($"任务异常 [{ex.Message}]");
-                    }
-                }
-            }
             Console.ReadLine();
         }
     }

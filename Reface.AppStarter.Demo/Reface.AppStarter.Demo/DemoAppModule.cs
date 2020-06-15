@@ -1,21 +1,12 @@
 ﻿using Reface.AppStarter.AppModules;
-using Reface.AppStarter.Attributes;
-using Reface.AppStarter.Demo.Logger;
-using Reface.AppStarter.Demo.Users;
-
 namespace Reface.AppStarter.Demo
 {
     /// <summary>
     /// 示例模块
     /// </summary>
-    [ComponentScanAppModule]
-    [UserAppModule]
+    [ComponentScanAppModule] // 自动注册组件模块
+    [TaskAppModule] // 依赖任务模块，系统启动后会自动执行所有任务
     public class DemoAppModule : AppModule
     {
-        [ReplaceCreator]
-        public ILogger GetLogger()
-        {
-            return new ConsoleLogger();
-        }
     }
 }

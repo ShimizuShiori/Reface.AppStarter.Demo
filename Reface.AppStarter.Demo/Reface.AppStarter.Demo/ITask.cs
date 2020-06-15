@@ -1,9 +1,9 @@
-﻿namespace Reface.AppStarter.Demo
-{
-    public interface ITask
-    {
-        string TaskName { get; }
+﻿//namespace Reface.AppStarter.Demo
+//{
+//    public interface ITask
+//    {
+//        string TaskName { get; }
 
-        void Do();
-    }
-}
+//        void Do();
+//    }
+//}
