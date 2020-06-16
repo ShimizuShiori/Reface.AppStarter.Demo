@@ -3,5 +3,7 @@
     public interface ILogger
     {
         void Output(LoggerLevel level, string content);
+
+        void NewLine();
     }
 }

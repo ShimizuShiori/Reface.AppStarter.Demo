@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CB9BB260-DA70-460B-922E-557E37674DC1}</ProjectGuid>
+    <ProjectGuid>{BD51EDEA-D8C9-43FF-94E8-B69E20FF4009}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Reface.AppStarter.Demo.Logger</RootNamespace>
-    <AssemblyName>Reface.AppStarter.Demo.Logger</AssemblyName>
+    <RootNamespace>Reface.AppStarter.Demo.Orders</RootNamespace>
+    <AssemblyName>Reface.AppStarter.Demo.Orders</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -34,35 +34,14 @@
     <Reference Include="Autofac, Version=5.2.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.5.2.0\lib\net461\Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.Core, Version=1.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Castle.Core.1.2.0\lib\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.DynamicProxy2, Version=2.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Castle.DynamicProxy.2.2.0\lib\Castle.DynamicProxy2.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Services.Logging.log4netIntegration, Version=1.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Castle.Core.1.2.0\lib\Castle.Services.Logging.log4netIntegration.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Services.Logging.NLogIntegration, Version=1.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Castle.Core.1.2.0\lib\Castle.Services.Logging.NLogIntegration.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NLog, Version=1.0.0.505, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.1.0.0.505\lib\NLog.dll</HintPath>
-    </Reference>
     <Reference Include="Reface.AppStarter, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Reface.AppStarter.2.1.11\lib\net461\Reface.AppStarter.dll</HintPath>
-    </Reference>
-    <Reference Include="Reface.AppStarter.Proxy, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Reface.AppStarter.Proxy.1.5.0\lib\net461\Reface.AppStarter.Proxy.dll</HintPath>
     </Reference>
     <Reference Include="Reface.CommandBus, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Reface.CommandBus.2.0.1\lib\net461\Reface.CommandBus.dll</HintPath>
@@ -87,17 +66,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\LoggerAttribute.cs" />
-    <Compile Include="DefaultLogger.cs" />
-    <Compile Include="Extensions.cs" />
-    <Compile Include="ILogger.cs" />
-    <Compile Include="LoggerAppModule.cs" />
-    <Compile Include="LoggerLevel.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="OrderAppModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Proxies\LoggerProxy.cs" />
+    <Compile Include="Providers\DefaultUserProvider.cs" />
+    <Compile Include="Providers\IUserProvider.cs" />
+    <Compile Include="Services\DefaultOrderService.cs" />
+    <Compile Include="Services\IOrderService.cs" />
+    <Compile Include="Tasks\CreateOrderTask.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Reface.AppStarter.Demo.Common\Reface.AppStarter.Demo.Tasks.csproj">
+      <Project>{cf6e2cc9-579a-45a4-ab05-b703f0049ad9}</Project>
+      <Name>Reface.AppStarter.Demo.Tasks</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reface.AppStarter.Demo.Logger\Reface.AppStarter.Demo.Logger.csproj">
+      <Project>{cb9bb260-da70-460b-922e-557e37674dc1}</Project>
+      <Name>Reface.AppStarter.Demo.Logger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reface.AppStarter.Demo.QueryBus\Reface.AppStarter.Demo.QueryBus.csproj">
+      <Project>{c8a1e0dd-004d-4ae5-b4ea-4f1ff111530f}</Project>
+      <Name>Reface.AppStarter.Demo.QueryBus</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

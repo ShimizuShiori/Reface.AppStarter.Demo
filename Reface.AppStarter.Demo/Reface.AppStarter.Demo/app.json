@@ -1,4 +1,8 @@
 {
+  "$schema": "./app.schema.json",
+  "App": {
+    "GenerateConfigJsonSchema": true
+  },
   "Users": {
     "Admin": "root",
     "Password": "123456",

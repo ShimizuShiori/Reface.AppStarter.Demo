@@ -1,7 +1,4 @@
-﻿using Reface.AppStarter.AppContainers;
-using Reface.AppStarter.Demo.Logger;
-using System;
-using System.Collections.Generic;
+﻿using System;
 
 namespace Reface.AppStarter.Demo
 {
@@ -9,11 +6,9 @@ namespace Reface.AppStarter.Demo
     {
         static void Main(string[] args)
         {
-            // 应用程序安装类
-            AppSetup setup = new AppSetup();
-
             // 启动示例模块
-            var app = setup.Start(new DemoAppModule());
+            // 会以 app.json 为配置文件进行启动
+            new AppSetup().Start(new DemoAppModule());
 
             Console.ReadLine();
         }

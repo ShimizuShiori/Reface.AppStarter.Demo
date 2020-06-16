@@ -3,6 +3,7 @@
     public enum LoggerLevel
     {
         Info,
+        Message,
         Warning,
         Error
     }

@@ -33,8 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=5.1.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.5.1.2\lib\net461\Autofac.dll</HintPath>
+    <Reference Include="Autofac, Version=5.2.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.5.2.0\lib\net461\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -43,7 +43,7 @@
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Reface.AppStarter, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Reface.AppStarter.2.1.7\lib\net461\Reface.AppStarter.dll</HintPath>
+      <HintPath>..\packages\Reface.AppStarter.2.1.11\lib\net461\Reface.AppStarter.dll</HintPath>
     </Reference>
     <Reference Include="Reface.CommandBus, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Reface.CommandBus.2.0.1\lib\net461\Reface.CommandBus.dll</HintPath>
@@ -70,16 +70,15 @@
   <ItemGroup>
     <Compile Include="ConsoleLogger.cs" />
     <Compile Include="DemoAppModule.cs" />
-    <Compile Include="ITask.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tasks\HelloTask.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="app.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="app.schema.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -91,12 +90,24 @@
       <Project>{CB9BB260-DA70-460B-922E-557E37674DC1}</Project>
       <Name>Reface.AppStarter.Demo.Logger</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Reface.AppStarter.Demo.Orders\Reface.AppStarter.Demo.Orders.csproj">
+      <Project>{BD51EDEA-D8C9-43FF-94E8-B69E20FF4009}</Project>
+      <Name>Reface.AppStarter.Demo.Orders</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reface.AppStarter.Demo.QueryBus\Reface.AppStarter.Demo.QueryBus.csproj">
+      <Project>{C8A1E0DD-004D-4AE5-B4EA-4F1FF111530F}</Project>
+      <Name>Reface.AppStarter.Demo.QueryBus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reface.AppStarter.Demo.Users\Reface.AppStarter.Demo.Users.csproj">
+      <Project>{9EC5AE12-75D2-49DD-9C15-AE498A2983E1}</Project>
+      <Name>Reface.AppStarter.Demo.Users</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties app_1json__JsonSchema="http://json.schemastore.org/2.0.0-csd.2.beta.2018-10-10.json" />
+      <UserProperties app_1json__JsonSchema="" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

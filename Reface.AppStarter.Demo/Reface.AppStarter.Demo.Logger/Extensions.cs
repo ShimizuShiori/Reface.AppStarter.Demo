@@ -16,5 +16,10 @@
         {
             logger.Output(LoggerLevel.Error, content);
         }
+
+        public static void Message(this ILogger logger, string content)
+        {
+            logger.Output(LoggerLevel.Message, content);
+        }
     }
 }

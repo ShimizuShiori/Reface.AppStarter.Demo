@@ -1,27 +1,9 @@
-﻿using Reface.AppStarter.Attributes;
-using Reface.AppStarter.Proxy;
-using System;
+﻿using System;
 
 namespace Reface.AppStarter.Demo.Logger.Attributes
 {
-    [AttributeUsage(AttributeTargets.Method)]
-    public class LoggerAttribute : ProxyAttribute
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+    public class LoggerAttribute : Attribute
     {
-        public ILogger Logger { get; set; }
-
-        public override void OnExecuted(ExecutedInfo executedInfo)
-        {
-            Logger.Info($"Executed : {executedInfo.ReturnedValue}");
-        }
-
-        public override void OnExecuteError(ExecuteErrorInfo executeErrorInfo)
-        {
-            Logger.Info($"Error : {executeErrorInfo.Error.Message}");
-        }
-
-        public override void OnExecuting(ExecutingInfo executingInfo)
-        {
-            Logger.Info($"Executing : {executingInfo.ToString()}");
-        }
     }
 }
